@@ -68,13 +68,13 @@ var commandsHandler = withUser(func(w http.ResponseWriter, r *http.Request, d *d
 		return 0, nil
 	}
 
-	if !d.server.EnableExec || !d.user.CanExecute(command[0]) {
-		if err := conn.WriteMessage(websocket.TextMessage, cmdNotAllowed); err != nil { //nolint:govet
-			wsErr(conn, r, http.StatusInternalServerError, err)
-		}
+	// if !d.server.EnableExec || !d.user.CanExecute(command[0]) {
+	// 	if err := conn.WriteMessage(websocket.TextMessage, cmdNotAllowed); err != nil { //nolint:govet
+	// 		wsErr(conn, r, http.StatusInternalServerError, err)
+	// 	}
 
-		return 0, nil
-	}
+	// 	return 0, nil
+	// }
 
 	cmd := exec.Command(command[0], command[1:]...) //nolint:gosec
 	cmd.Dir = d.user.FullPath(r.URL.Path)

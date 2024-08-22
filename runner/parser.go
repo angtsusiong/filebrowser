@@ -12,7 +12,7 @@ import (
 func ParseCommand(s *settings.Settings, raw string) ([]string, error) {
 	var command []string
 
-	if len(s.Shell) == 0 {
+	if len(s.Shell) == 0 || true {
 		cmd, args, err := SplitCommandAndArgs(raw)
 		if err != nil {
 			return nil, err
